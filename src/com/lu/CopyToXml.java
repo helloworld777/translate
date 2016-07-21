@@ -13,8 +13,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.Action;
 import javax.swing.JButton;
@@ -48,10 +51,11 @@ public class CopyToXml extends JFrame {
 	static List<List<String>> language = new ArrayList<>();
 	static List<String> names;
 	JPanel jp1, jp2, jp3;//
-	JLabel jlb1, jlb2, jlb3, jlb4;// 
-	JButton jb1, jb2, jbtnTran;// 
+	JLabel jlb1, jlb2, jlb3, jlb4;//
+	JButton jb1, jb2, jbtnTran;//
 	JTextField jtf;//
-	JPasswordField jpf;// 
+	JPasswordField jpf;//
+	static Map<String, String> country = new HashMap<>();
 
 	public static void init() {
 		language.add(chines);
@@ -67,6 +71,37 @@ public class CopyToXml extends JFrame {
 		language.add(xibanya);
 		language.add(xiong);
 		language.add(bo);
+
+//		country.put("中文", "zh");
+		country.put("英语", "en");
+//		country.put("yue", "粤语");
+//		country.put("wyw", "文言文");
+//		country.put("jp", "日语");
+//		country.put("kor", "韩语");
+//		country.put("fra", "法语");
+//		country.put("spa", "西班牙语");
+//		country.put("pt", "葡萄牙语");
+//		country.put("de", "德语");
+//		country.put("it", "意大利语"); 
+//		country.put("nl", "荷兰语");
+//		country.put("pl", "波兰语");
+//		country.put("hu", "匈牙利语");
+//		country.put("cht", "繁体中文");
+//		country.put("zh", "中文");
+//		country.put("en", "英语");
+//		country.put("yue", "粤语");
+//		country.put("wyw", "文言文");
+//		country.put("jp", "日语");
+//		country.put("kor", "韩语");
+//		country.put("fra", "法语");
+//		country.put("spa", "西班牙语");
+//		country.put("pt", "葡萄牙语");
+//		country.put("de", "德语");
+//		country.put("it", "意大利语"); 
+//		country.put("nl", "荷兰语");
+//		country.put("pl", "波兰语");
+//		country.put("hu", "匈牙利语");
+//		country.put("cht", "繁体中文");
 	}
 
 	private String mobanPath, excelPath;
@@ -80,23 +115,64 @@ public class CopyToXml extends JFrame {
 		// writeToFile();
 		CopyToXml c = new CopyToXml();
 		init();
-		c.showUI();
-//		String s="\\ n en plein air ouvert";
-		String s="    Haute carte morale";
-		String s2="プログラムに異常が発生したので、すぐ終了します";
-		int i=0;
-		for(i=0;i<s.length();i++){
-			int code=(int)s.charAt(i);
-			if(code==160){
-				continue;
-			}else{
-				break;
+		c.mobanPath="e:\\test\\moban2.txt";
+		// c.showUI();
+		// String s="\\ n en plein air ouvert";
+//		String s = "    Haute carte morale";
+//		String s2 = "プログラムに異常が発生したので、すぐ終了します";
+//		int i = 0;
+//		for (i = 0; i < s.length(); i++) {
+//			int code = (int) s.charAt(i);
+//			if (code == 160) {
+//				continue;
+//			} else {
+//				break;
+//			}
+//		}
+//		System.out.println(s.trim());
+//		System.out.println(s.substring(i));
+		// s=s.replaceAll("\\\\ n", "\\\\n");
+		// System.out.println(s);
+
+		// APP ID: 20160721000025590
+
+		// 密钥: CaptM32jg976cOjkLhid
+//		BaiduTranslateDemo b = new BaiduTranslateDemo();
+		
+		try {
+//			System.out.println(b.translate("国家", "zh", "en"));
+//			valueGetKey
+			c.replace2();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	private static ArrayList valueGetKey(Map map, String value) {
+		Set set = map.entrySet();
+		ArrayList arr = new ArrayList<>();
+		Iterator it = set.iterator();
+		while (it.hasNext()) {
+			Map.Entry entry = (Map.Entry) it.next();
+			if (entry.getValue().equals(value)) {
+				int s = (int) entry.getKey();
+				arr.add(s);
 			}
-		};
-		System.out.println(s.trim());
-		System.out.println(s.substring(i));
-//		s=s.replaceAll("\\\\ n", "\\\\n");
-//		System.out.println(s);
+		}
+		return arr;
+	}
+
+	private static void translate(String key) {
+		BaiduTranslateDemo b = new BaiduTranslateDemo();
+		try {
+			b.translate(key, "zh", "en");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	private void showFile(boolean isMoban) {
@@ -114,7 +190,8 @@ public class CopyToXml extends JFrame {
 		}
 
 	}
-	private void trans(){
+
+	private void trans() {
 		try {
 			replace();
 			readXml();
@@ -124,10 +201,11 @@ public class CopyToXml extends JFrame {
 			e1.printStackTrace();
 		}
 	}
+
 	private void showUI() {
 		jp1 = new JPanel();
-//		jp1.setLayout(new GridLayout(2, 2));
-		
+		// jp1.setLayout(new GridLayout(2, 2));
+
 		jp2 = new JPanel();
 		jp3 = new JPanel();
 		jlb1 = new JLabel("模板文件:");
@@ -153,7 +231,7 @@ public class CopyToXml extends JFrame {
 			}
 		});
 		jbtnTran.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				trans();
@@ -184,10 +262,9 @@ public class CopyToXml extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 
-		
 		this.setResizable(false);
 	}
-
+	
 	public void replace() throws Exception {
 		// String file = "E:\\moban2.txt";
 		BufferedReader in = new BufferedReader(new FileReader(mobanPath));
@@ -202,6 +279,24 @@ public class CopyToXml extends JFrame {
 					for (List<String> list : language) {
 						list.add(result);
 					}
+				}
+			}
+		}
+		in.close();
+	}
+	public  void replace2() throws Exception {
+		// String file = "E:\\moban2.txt";
+		BufferedReader in = new BufferedReader(new FileReader(mobanPath));
+		String str = null;
+		BaiduTranslateDemo t=new BaiduTranslateDemo();
+		while ((str = in.readLine()) != null) {
+			if (str.contains(">") && str.contains("</")) {
+				int index = str.indexOf(">");
+				int end = str.indexOf("</");
+				if (end > index) {
+					String s = str.substring(index + 1, end);
+					System.out.println(s);
+					System.out.println(t.translate(s, "zh", "pl"));
 				}
 			}
 		}
@@ -249,28 +344,26 @@ public class CopyToXml extends JFrame {
 					}
 					List<String> list = language.get(index);
 					if (count < list.size()) {
-						
-						
-						
-						String value=cell
-								.getStringCellValue().trim();
-						
-						//替换' 为\',\ n 为\n,
-						value=value.trim().replaceAll("'", "\\\\'").replaceAll("\\\\ n", "\\\\n");
-						//处理空格,
-						int j=0;
-						for(;j<value.length();j++){
-							int code=(int)value.charAt(j);
-							if(code==160){
+
+						String value = cell.getStringCellValue().trim();
+
+						// 替换' 为\',\ n 为\n,
+						value = value.trim().replaceAll("'", "\\\\'")
+								.replaceAll("\\\\ n", "\\\\n");
+						// 处理空格,
+						int j = 0;
+						for (; j < value.length(); j++) {
+							int code = (int) value.charAt(j);
+							if (code == 160) {
 								continue;
-							}else{
+							} else {
 								break;
 							}
-						};
-						value=value.substring(j);
+						}
+						;
+						value = value.substring(j);
 						String s2 = String.format(list.get(count), value);
-						System.out
-						.println(s2);
+						System.out.println(s2);
 						list.remove(count);
 						list.add(count, s2);
 					}
