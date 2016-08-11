@@ -29,6 +29,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -57,52 +58,37 @@ public class CopyToXml extends JFrame {
 	JPasswordField jpf;//
 	static Map<String, String> country = new HashMap<>();
 
-	public static void init() {
-		language.add(chines);
-		language.add(chines2);
-		language.add(yingyu);
-		language.add(riyu);
-		language.add(hanyu);
-		language.add(eyu);
-		language.add(fayu);
-		language.add(deyu);
-		language.add(yidali);
-		language.add(putao);
-		language.add(xibanya);
-		language.add(xiong);
-		language.add(bo);
-
-//		country.put("中文", "zh");
-		country.put("英语", "en");
-//		country.put("yue", "粤语");
-//		country.put("wyw", "文言文");
-//		country.put("jp", "日语");
-//		country.put("kor", "韩语");
-//		country.put("fra", "法语");
-//		country.put("spa", "西班牙语");
-//		country.put("pt", "葡萄牙语");
-//		country.put("de", "德语");
-//		country.put("it", "意大利语"); 
-//		country.put("nl", "荷兰语");
-//		country.put("pl", "波兰语");
-//		country.put("hu", "匈牙利语");
-//		country.put("cht", "繁体中文");
-//		country.put("zh", "中文");
-//		country.put("en", "英语");
-//		country.put("yue", "粤语");
-//		country.put("wyw", "文言文");
-//		country.put("jp", "日语");
-//		country.put("kor", "韩语");
-//		country.put("fra", "法语");
-//		country.put("spa", "西班牙语");
-//		country.put("pt", "葡萄牙语");
-//		country.put("de", "德语");
-//		country.put("it", "意大利语"); 
-//		country.put("nl", "荷兰语");
-//		country.put("pl", "波兰语");
-//		country.put("hu", "匈牙利语");
-//		country.put("cht", "繁体中文");
-	}
+//	public static void init() {
+//		language.add(chines);
+//		language.add(chines2);
+//		language.add(yingyu);
+//		language.add(riyu);
+//		language.add(hanyu);
+//		language.add(eyu);
+//		language.add(fayu);
+//		language.add(deyu);
+//		language.add(yidali);
+//		language.add(putao);
+//		language.add(xibanya);
+//		language.add(xiong);
+//		language.add(bo);
+//
+//		// country.put("中文", "zh");
+//		country.put("英语", "en");
+//		// country.put("粤语", "yue");
+//		// country.put("wyw", "文言文");
+//		// country.put("日语", "jp");
+//		// country.put("韩语", "kor");
+//		// country.put("法语", "fra");
+//		// country.put("西班牙语", "spa");
+//		// country.put("葡萄牙语", "pt");
+//		// country.put("德语", "de");
+//		// country.put("意大利语", "it");
+//		// country.put("nl", "荷兰语");
+//		// country.put("波兰语", "pl");
+//		// country.put("匈牙利语", "hu");
+//		// country.put("繁体中文", "cht");
+//	}
 
 	private String mobanPath, excelPath;
 
@@ -114,35 +100,18 @@ public class CopyToXml extends JFrame {
 		// readXml(fileName);
 		// writeToFile();
 		CopyToXml c = new CopyToXml();
-		init();
-		c.mobanPath="e:\\test\\moban2.txt";
-		// c.showUI();
-		// String s="\\ n en plein air ouvert";
-//		String s = "    Haute carte morale";
-//		String s2 = "プログラムに異常が発生したので、すぐ終了します";
-//		int i = 0;
-//		for (i = 0; i < s.length(); i++) {
-//			int code = (int) s.charAt(i);
-//			if (code == 160) {
-//				continue;
-//			} else {
-//				break;
-//			}
-//		}
-//		System.out.println(s.trim());
-//		System.out.println(s.substring(i));
-		// s=s.replaceAll("\\\\ n", "\\\\n");
-		// System.out.println(s);
-
+//		init();
+		// c.mobanPath="e:\\test\\moban2.txt";
+		c.showUI();
 		// APP ID: 20160721000025590
 
 		// 密钥: CaptM32jg976cOjkLhid
-//		BaiduTranslateDemo b = new BaiduTranslateDemo();
-		
+		// BaiduTranslateDemo b = new BaiduTranslateDemo();
+
 		try {
-//			System.out.println(b.translate("国家", "zh", "en"));
-//			valueGetKey
-			c.replace2();
+			// System.out.println(b.translate("国家", "zh", "en"));
+			// valueGetKey
+			// c.replace2();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -176,7 +145,7 @@ public class CopyToXml extends JFrame {
 	}
 
 	private void showFile(boolean isMoban) {
-		JFileChooser jf = new JFileChooser();
+		JFileChooser jf = new JFileChooser("e:/test");
 		jf.showDialog(null, null);
 		File fi = jf.getSelectedFile();
 		if (null != fi) {
@@ -193,7 +162,7 @@ public class CopyToXml extends JFrame {
 
 	private void trans() {
 		try {
-			replace();
+			;
 			readXml();
 			writeToFile();
 		} catch (Exception e1) {
@@ -264,7 +233,7 @@ public class CopyToXml extends JFrame {
 
 		this.setResizable(false);
 	}
-	
+
 	public void replace() throws Exception {
 		// String file = "E:\\moban2.txt";
 		BufferedReader in = new BufferedReader(new FileReader(mobanPath));
@@ -276,6 +245,7 @@ public class CopyToXml extends JFrame {
 				if (end > index) {
 					String s = str.substring(index + 1, end);
 					String result = str.replace(s, "%s");
+					System.out.println(result);
 					for (List<String> list : language) {
 						list.add(result);
 					}
@@ -284,11 +254,12 @@ public class CopyToXml extends JFrame {
 		}
 		in.close();
 	}
-	public  void replace2() throws Exception {
+
+	public void replace2() throws Exception {
 		// String file = "E:\\moban2.txt";
 		BufferedReader in = new BufferedReader(new FileReader(mobanPath));
 		String str = null;
-		BaiduTranslateDemo t=new BaiduTranslateDemo();
+		BaiduTranslateDemo t = new BaiduTranslateDemo();
 		while ((str = in.readLine()) != null) {
 			if (str.contains(">") && str.contains("</")) {
 				int index = str.indexOf(">");
@@ -330,7 +301,9 @@ public class CopyToXml extends JFrame {
 			while (cs.hasNext()) {
 				Cell cell = cs.next();
 				names.add(cell.getStringCellValue());
+				language.add(new ArrayList<String>());
 			}
+			replace();
 			rows.next();
 			int count = 0;
 			while (rows.hasNext()) {
@@ -339,7 +312,11 @@ public class CopyToXml extends JFrame {
 				int index = 0;
 				while (cells.hasNext()) {
 					Cell cell = cells.next();
-					if (cell.getStringCellValue().trim().equals("")) {
+					CellStyle style = cell.getCellStyle();
+
+					int type =cell.getCellType();
+					System.out.println("type:" + type);
+					if (type != 1) {
 						continue;
 					}
 					List<String> list = language.get(index);
@@ -375,6 +352,8 @@ public class CopyToXml extends JFrame {
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
