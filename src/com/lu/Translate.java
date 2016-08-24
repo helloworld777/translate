@@ -61,7 +61,7 @@ public class Translate extends JFrame {
 		country.put("葡萄牙语", "pt");
 		country.put("德语", "de");
 		country.put("意大利语", "it");
-		country.put("nl", "荷兰语");
+		country.put("荷兰语", "nl");
 		country.put("波兰语", "pl");
 		country.put("匈牙利语", "hu");
 		country.put("繁体中文", "cht");
