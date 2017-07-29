@@ -99,15 +99,16 @@ public class CopyToXml extends JFrame {
 		// replace();
 		// readXml(fileName);
 		// writeToFile();
-		CopyToXml c = new CopyToXml();
+//		CopyToXml c = new CopyToXml();
 //		init();
 		// c.mobanPath="e:\\test\\moban2.txt";
-		c.showUI();
+//		c.showUI();
 		// APP ID: 20160721000025590
 
 		// 密钥: CaptM32jg976cOjkLhid
 		// BaiduTranslateDemo b = new BaiduTranslateDemo();
-
+		
+//		System.out.println(file.getAbsolutePath());
 		try {
 			// System.out.println(b.translate("国家", "zh", "en"));
 			// valueGetKey
